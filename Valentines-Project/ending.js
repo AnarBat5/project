@@ -347,7 +347,7 @@ yesButton.addEventListener('click', () => {
         setTimeout(() => {
             messageBox.style.display = 'block';
             messageBox.style.opacity = '1';
-            messageText.textContent = 'YAAY! 🎉💖✨';
+            messageText.textContent = 'YAAY! 🎉💖✨ SEE YOU ON FEB 14TH';
             
             // Remove the continue indicator
             const continueIndicator = messageBox.querySelector('.continue-indicator');
@@ -376,3 +376,4 @@ evelynSpriteSheet.onload = function() {
     messageBox.style.opacity = '1';
     showDialogue(0);
 };
+

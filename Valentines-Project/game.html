@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="evelynSprite" width="250" height="250"></canvas>
+        <div id="hintBubble" class="hint-bubble hidden">
+            <p id="hintText"></p>
+        </div>
+        
+        <div id="wordleGame" class="wordle-game hidden">
+            <h1 class="game-title">EVELYN'S MBTI IN YOU</h1>
+            <div id="wordleGrid" class="wordle-grid"></div>
+            <div id="keyboard" class="keyboard"></div>
+        </div>
+        
+        <div id="letterCollection" class="letter-collection hidden"></div>
+        
+        <div id="valentineReveal" class="valentine-reveal hidden">
+            <h1 id="valentineMessage">WILL YOU BE MY VALENTINE?</h1>
+        </div>
+        
+        <div id="messageBox" class="message-box">
+            <div class="speaker-name">~Evelyn~</div>
+            <p id="messageText"></p>
+            <div class="continue-indicator">
+                <span>Click to continue</span> ▼
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

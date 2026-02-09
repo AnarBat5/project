@@ -188,7 +188,7 @@ function submitGuess() {
         }, 1500);
     } else if (currentRow >= maxGuesses - 1) {
         setTimeout(() => {
-            alert(`The word was ${targetWord}`);
+            showRetryButton();
         }, 1500);
     } else {
         // Show hint for wrong guess (currentRow + 1 because index 0 is initial message)
@@ -478,4 +478,75 @@ evelynSpriteSheet.onload = function() {
     initWordleGrid();
     initKeyboard();
 };
+
+function showRetryButton() {
+    // Remove any existing retry button
+    let container = document.getElementById('retryContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'retryContainer';
+        document.body.appendChild(container);
+    }
+    container.innerHTML = '';
+    
+    const retryBtn = document.createElement('button');
+    retryBtn.id = 'retryButton';
+    retryBtn.textContent = 'Retry';
+    retryBtn.className = 'menu-button';
+    retryBtn.style.position = 'fixed';
+    retryBtn.style.top = '60%';
+    retryBtn.style.left = '50%';
+    retryBtn.style.transform = 'translate(-50%, -50%)';
+    retryBtn.style.zIndex = '1000';
+    retryBtn.style.fontSize = '1.5rem';
+    retryBtn.style.padding = '18px 50px';
+    retryBtn.style.background = '#ff1744';
+    retryBtn.style.color = 'white';
+    retryBtn.style.borderRadius = '8px';
+    retryBtn.style.boxShadow = '0 8px 20px rgba(255, 23, 68, 0.4)';
+    retryBtn.style.border = 'none';
+    retryBtn.style.cursor = 'pointer';
+    
+    retryBtn.onclick = resetGame;
+    container.appendChild(retryBtn);
+}
+
+function resetGame() {
+    // Remove retry button
+    let container = document.getElementById('retryContainer');
+    if (container) container.innerHTML = '';
+    // Reset game state
+    currentGuess = '';
+    currentRow = 0;
+    guesses.length = 0;
+    wordleGrid.innerHTML = '';
+    keyboard.innerHTML = '';
+    initWordleGrid();
+    initKeyboard();
+    // Remove all hints
+    hintBubble.classList.add('hidden');
+    hintBubble.classList.remove('show');
+    // Reset grid cell classes
+    for (let i = 0; i < maxGuesses; i++) {
+        for (let j = 0; j < 5; j++) {
+            const cell = document.getElementById(`cell-${i}-${j}`);
+            if (cell) {
+                cell.className = 'grid-cell';
+                cell.textContent = '';
+            }
+        }
+    }
+    // Show initial encouragement
+    showHint(0);
+    // Ensure wordle game is visible
+    wordleGame.classList.remove('hidden');
+    wordleGame.classList.add('show');
+    // Reset Evelyn position if needed
+    evelynCanvas.classList.add('bottom-left');
+    // Hide any message box or overlays
+    messageBox.style.display = 'none';
+    messageBox.style.opacity = '0';
+    // Reset any congrats dialogue state
+    currentCongratsDialogue = -1;
+}
 
